@@ -2,6 +2,8 @@
 
 A simple, responsive movie and series watchlist built with **React**. WatchedShelf lets you browse a bundled catalog of movies and series, search titles, add your own entries, and keep track of what you've watched with your own ratings.
 
+🔗 **Live Demo:** [watchedshelf.vercel.app](https://watchedshelf.vercel.app/)
+
 ## Features
 
 - **Movie & Series Catalog** – Browse 26 movies and 20 series with search and separate category tabs.
@@ -80,6 +82,7 @@ WatchedShelf is currently a **front-end project**.
 **Mahmoud Mosad**
 
 - GitHub: [@NotMoxo](https://github.com/NotMoxo)
+- Live Project: [WatchedShelf](https://watchedshelf.vercel.app/)
 - Repository: [WatchedShelf](https://github.com/NotMoxo/watchedshelf)
 
 ---
