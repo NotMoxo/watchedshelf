@@ -6,7 +6,7 @@ A simple, responsive movie and series watchlist built with **React**. WatchedShe
 
 ## Features
 
-- **Movie & Series Catalog** – Browse 26 movies and 20 series with search and separate category tabs.
+- **Movie & Series Catalog** – Browse 30 movies and 20 series with search and separate category tabs.
 - **Watched List** – Mark titles as watched, give them a personal rating, and see a summary of your watched list.
 - **Custom Titles** – Add your own movies or series with year, IMDb rating, runtime, and an optional poster URL.
 - **Library Management** – Remove titles from your watched list or delete custom entries from your library.
