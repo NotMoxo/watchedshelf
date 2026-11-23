@@ -1,0 +1,73 @@
+import { PLACEHOLDER_POSTER } from "../utils/posters";
+
+function movie(imdbID, Title, Year, imdbRating, runtime, posterPage = Title) {
+  return {
+    imdbID,
+    Title,
+    Year,
+    imdbRating,
+    runtime,
+    posterPage,
+    Poster: PLACEHOLDER_POSTER,
+    type: "movie",
+  };
+}
+
+export const movieCatalog = [
+  movie("tt1375666", "Inception", "2010", 8.8, 148),
+  movie("tt0133093", "The Matrix", "1999", 8.7, 136),
+  movie("tt6751668", "Parasite", "2019", 8.5, 132, "Parasite (2019 film)"),
+  movie("tt0120338", "Titanic", "1997", 7.9, 195, "Titanic (1997 film)"),
+  movie("tt0499549", "Avatar", "2009", 7.9, 162, "Avatar (2009 film)"),
+  movie("tt0816692", "Interstellar", "2014", 8.7, 169, "Interstellar (film)"),
+  movie("tt0468569", "The Dark Knight", "2008", 9.0, 152),
+  movie("tt0110912", "Pulp Fiction", "1994", 8.9, 154),
+  movie("tt0111161", "The Shawshank Redemption", "1994", 9.3, 142),
+  movie("tt0068646", "The Godfather", "1972", 9.2, 175),
+  movie("tt0109830", "Forrest Gump", "1994", 8.8, 142),
+  movie("tt0107290", "Jurassic Park", "1993", 8.2, 127),
+  movie("tt0110357", "The Lion King", "1994", 8.5, 88),
+  movie("tt0114709", "Toy Story", "1995", 8.3, 81),
+  movie("tt0266543", "Finding Nemo", "2003", 8.2, 100),
+  movie("tt0245429", "Spirited Away", "2001", 8.6, 125),
+  movie("tt2582802", "Whiplash", "2014", 8.5, 106, "Whiplash (2014 film)"),
+  movie("tt3783958", "La La Land", "2016", 8.0, 128),
+  movie("tt5052448", "Get Out", "2017", 7.8, 104, "Get Out (film)"),
+  movie(
+    "tt6710474",
+    "Everything Everywhere All at Once",
+    "2022",
+    7.8,
+    139,
+  ),
+  movie("tt0848228", "The Avengers", "2012", 8.0, 143, "The Avengers (2012 film)"),
+  movie("tt0371746", "Iron Man", "2008", 7.9, 126, "Iron Man (2008 film)"),
+  movie(
+    "tt10872600",
+    "Spider-Man: No Way Home",
+    "2021",
+    8.2,
+    148,
+    "Spider-Man: No Way Home",
+  ),
+  movie("tt0076759", "Star Wars", "1977", 8.6, 121, "Star Wars (film)"),
+  movie("tt0080684", "The Empire Strikes Back", "1980", 8.7, 124),
+  movie(
+    "tt0241527",
+    "Harry Potter and the Sorcerer's Stone",
+    "2001",
+    7.7,
+    152,
+    "Harry Potter and the Philosopher's Stone (film)",
+  ),
+  movie(
+    "tt0120737",
+    "The Lord of the Rings: The Fellowship of the Ring",
+    "2001",
+    8.9,
+    178,
+  ),
+  movie("tt0172495", "Gladiator", "2000", 8.5, 155, "Gladiator (2000 film)"),
+  movie("tt0073195", "Jaws", "1975", 8.1, 124, "Jaws (film)"),
+  movie("tt0088763", "Back to the Future", "1985", 8.5, 116),
+];

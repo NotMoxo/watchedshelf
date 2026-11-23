@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# WatchedShelf
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React movie and series watchlist. Browse and search the included catalogs, add
+custom titles, mark titles as watched, rate them, and switch between light and
+dark themes.
 
-## Available Scripts
+## What to do next
 
-In the project directory, you can run:
+1. **Run it locally** using the setup steps below and try the main features.
+2. **Choose how you want to save data.**
+   - Without Supabase, your list is saved in this browser only. It survives
+     refreshes but is not shared with another browser or device.
+   - To sync each person's list across devices, set up Supabase by following
+     [Enable account sync](#enable-account-sync).
+3. **Run the checks** before sharing or deploying the app.
+4. **Deploy the production build** to a static web host and set the same
+   Supabase environment variables in the host if using account sync.
 
-### `npm start`
+> **Important:** Local browser data and Supabase account data are separate.
+> Switching to account sync does not automatically transfer titles from
+> `localStorage` into an account. Keep the original browser data until you have
+> confirmed the account has the titles you need.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Run locally
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Install [Node.js](https://nodejs.org/) and npm, then open a terminal in this
+project directory:
 
-### `npm test`
+```bash
+npm install
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app opens at [http://localhost:3000](http://localhost:3000). Without
+Supabase configuration, it runs in local-only mode and displays a
+“Saved on this browser” indicator.
 
-### `npm run build`
+## Enable account sync
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Supabase provides sign-up/sign-in and a private media table for each account.
+Set it up before relying on cloud storage:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Create a project at [Supabase](https://supabase.com/).
+2. In the project's SQL Editor, run [`supabase/schema.sql`](./supabase/schema.sql)
+   once. The table uses row-level security so authenticated users can only
+   access their own rows.
+3. Copy [`.env.example`](./.env.example) to `.env` in the project root.
+4. Replace the example values with the project's **Project URL** and
+   **anon/publishable key**:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```env
+   REACT_APP_SUPABASE_URL=https://your-project.supabase.co
+   REACT_APP_SUPABASE_ANON_KEY=your-supabase-anon-key
+   ```
 
-### `npm run eject`
+5. Restart `npm start`, create an account in the app, and verify that adding a
+   custom title, marking it watched, changing its rating, and removing it all
+   persist after signing out and back in.
+6. For production, add these environment variables in your hosting provider
+   and configure the app's public site URL and allowed redirect URLs in
+   Supabase's authentication settings.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Only the anon/publishable key belongs in this browser app. **Never use or expose
+the Supabase service-role key.** Treat `.env` as private and do not commit it.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Search a catalog of movies and series with separate category tabs.
+- Add custom movies or series, including year, IMDb rating, runtime, and an
+  optional poster URL.
+- Add catalog or custom titles to the watched list, give personal ratings, and
+  remove titles from the watched list.
+- Remove custom titles from the library; catalog entries themselves are not
+  deleted.
+- Light/dark theme preference saved in the current browser.
+- Responsive interface, poster fallbacks, and reduced-motion-aware animations.
+- Local browser storage by default, or per-account Supabase storage when
+  configured.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Checks
 
-## Learn More
+Run the test suite:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm test -- --watchAll=false --runInBand
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Create and verify a production build:
 
-### Code Splitting
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project map
 
-### Analyzing the Bundle Size
+- [`src/App.js`](./src/App.js) — app state, catalog filtering, and local/cloud
+  library operations.
+- [`src/components/`](./src/components) — navigation, lists, forms, and other
+  UI components.
+- [`src/data/`](./src/data) — bundled movie and series catalogs.
+- [`src/lib/`](./src/lib) — Supabase client and library storage conversions.
+- [`src/utils/posters.js`](./src/utils/posters.js) — poster lookup and fallback
+  behavior.
+- [`supabase/schema.sql`](./supabase/schema.sql) — database table and security
+  policies for account sync.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Troubleshooting
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **It says “Saved on this browser”:** Supabase is not configured. This list
+  will not sync to another device.
+- **Sign-in or saving fails:** Check the Supabase URL/key, confirm the SQL
+  schema was applied, and review the browser console and Supabase logs.
+- **Changes to `.env` have no effect:** Restart the development server after
+  editing environment variables.
+- **A poster is missing:** Some external poster sources may not have an image;
+  the app uses a local placeholder as a fallback.
