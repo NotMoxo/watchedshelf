@@ -1340,6 +1340,11 @@ body {
   box-shadow: var(--hard-shadow);
 }
 
+.box-collapsed {
+  min-height: 5.4rem;
+  overflow: hidden;
+}
+
 .btn-toggle {
   top: 1.2rem;
   right: 1.2rem;

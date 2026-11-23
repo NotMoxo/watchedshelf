@@ -44,6 +44,25 @@ test("search filters the movie list and updates the result count", () => {
   expect(screen.getByRole("navigation").textContent).toContain("Found 1 movie");
 });
 
+test("a collapsed panel remains visible and can be reopened", () => {
+  render(<App />);
+
+  fireEvent.click(screen.getAllByRole("button", { name: "Collapse panel" })[0]);
+
+  const expandButton = screen.getAllByRole("button", { name: "Expand panel" })[0];
+  expect(expandButton).toHaveAttribute("aria-expanded", "false");
+  expect(expandButton.closest(".box")).toHaveClass("box-collapsed");
+  expect(screen.queryByText("The Matrix")).not.toBeInTheDocument();
+
+  fireEvent.click(expandButton);
+
+  expect(screen.getAllByRole("button", { name: "Collapse panel" })[0]).toHaveAttribute(
+    "aria-expanded",
+    "true",
+  );
+  expect(screen.getByText("The Matrix")).toBeInTheDocument();
+});
+
 test("dark mode toggles the interface and is remembered after remount", () => {
   const { unmount } = render(<App />);
 
